@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BizConnect — Global Business & Social Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --red: #CC0000;
+    --red-dark: #990000;
+    --red-light: #FF3333;
+    --red-pale: #FFF0F0;
+    --white: #FFFFFF;
+    --off-white: #FAFAFA;
+    --gray-light: #F5F5F5;
+    --gray: #E0E0E0;
+    --gray-mid: #999;
+    --gray-dark: #444;
+    --black: #1A1A1A;
+    --gold: #C9A84C;
+    --green: #1A7A4A;
+    --radius: 12px;
+    --shadow: 0 2px 16px rgba(204,0,0,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  /* ── TOP NAV ── */
+  .topnav {
+    background: var(--red);
+    color: white;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: white;
+  }
+  .logo span { color: var(--gold); }
+  .nav-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .nav-location:hover { background: rgba(255,255,255,0.25); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .nav-btn {
+    background: white;
+    color: var(--red);
+    border: none;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-btn:hover { background: var(--gold); color: white; }
+  .nav-lang {
+    color: white;
+    font-size: 13px;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 300px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 16px;
+  }
+
+  /* ── SIDEBAR LEFT ── */
+  .sidebar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .profile-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--gray);
+    box-shadow: var(--shadow);
+  }
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto 12px;
+    border: 3px solid var(--gold);
+  }
+  .profile-name {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .profile-type {
+    font-size: 12px;
+    color: var(--red);
+    font-weight: 500;
+    background: var(--red-pale);
+    padding: 3px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .profile-location {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-bottom: 12px;
+  }
+  .profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .stat-box {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+  }
+  .stat-num { font-weight: 700; font-size: 18px; color: var(--red); }
+  .stat-label { font-size: 11px; color: var(--gray-mid); }
+
+  .nav-menu {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .nav-item {
+    padding: 12px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--gray-light);
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-item:hover { background: var(--red-pale); color: var(--red); }
+  .nav-item.active { background: var(--red); color: white; }
+  .nav-item:last-child { border-bottom: none; }
+  .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+
+  /* ── MAIN FEED ── */
+  .main-feed { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Tab bar */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    background: white;
+    border-radius: var(--radius);
+    padding: 6px;
+    border: 1px solid var(--gray);
+    box-shadow: var(--shadow);
+  }
+  .tab {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--gray-dark);
+    transition: all 0.2s;
+  }
+  .tab.active { background: var(--red); color: white; }
+  .tab:hover:not(.active) { background: var(--red-pale); color: var(--red); }
+
+  /* Post composer */
+  .composer {
+    background: white;
+    border-radius: var(--radius);
+    padding: 16px;
+    border: 1px solid var(--gray);
+    box-shadow: var(--shadow);
+  }
+  .composer-top {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .composer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .composer-input {
+    flex: 1;
+    border: 1px solid var(--gray);
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    color: var(--black);
+    background: var(--gray-light);
+  }
+  .composer-input:focus { border-color: var(--red); background: white; }
+  .composer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .composer-tools { display: flex; gap: 8px; }
+  .tool-btn {
+    background: none;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--gray-dark);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tool-btn:hover { border-color: var(--red); color: var(--red); }
+  .post-btn {
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .post-btn:hover { background: var(--red-dark); }
+
+  /* Feed cards — alternating red/white */
+  .feed-card {
+    border-radius: var(--radius);
+    padding: 18px;
+    border: 1px solid var(--gray);
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+  }
+  .feed-card:hover { box-shadow: 0 4px 24px rgba(204,0,0,0.15); }
+  .feed-card.white-card { background: white; }
+  .feed-card.red-card {
+    background: var(--red);
+    color: white;
+    border-color: var(--red-dark);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .card-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .white-card .card-avatar { background: var(--red); color: white; }
+  .red-card .card-avatar { background: white; color: var(--red); }
+  .card-meta { flex: 1; }
+  .card-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .card-sub { font-size: 12px; opacity: 0.7; }
+  .verified-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .white-card .verified-badge { background: var(--red-pale); color: var(--red); }
+  .red-card .verified-badge { background: rgba(255,255,255,0.2); color: white; }
+  .card-body { font-size: 14px; line-height: 1.6; margin-bottom: 14px; }
+  .card-location {
+    font-size: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.75;
+  }
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .red-card .card-actions { border-top-color: rgba(255,255,255,0.2); }
+  .action-btn {
+    background: none;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .white-card .action-btn { border-color: var(--gray); color: var(--gray-dark); }
+  .white-card .action-btn:hover { border-color: var(--red); color: var(--red); background: var(--red-pale); }
+  .red-card .action-btn { border-color: rgba(255,255,255,0.4); color: white; }
+  .red-card .action-btn:hover { background: rgba(255,255,255,0.15); }
+
+  /* Price / bargain tag */
+  .price-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .official-price { font-size: 11px; opacity: 0.85; font-weight: 400; }
+
+  /* ── SIDEBAR RIGHT ── */
+  .sidebar-right { display: flex; flex-direction: column; gap: 12px; }
+
+  .widget {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .widget-header {
+    background: var(--red);
+    color: white;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .widget-body { padding: 14px; }
+
+  /* Gig listings */
+  .gig-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-light);
+    cursor: pointer;
+  }
+  .gig-item:last-child { border-bottom: none; }
+  .gig-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .gig-meta { display: flex; justify-content: space-between; align-items: center; }
+  .gig-range {
+    font-size: 11px;
+    color: var(--gray-mid);
+  }
+  .gig-apps {
+    font-size: 11px;
+    background: var(--red-pale);
+    color: var(--red);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .gig-budget {
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 600;
+    margin-top: 3px;
+  }
+
+  /* Industry directory */
+  .industry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .industry-chip {
+    background: var(--gray-light);
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .industry-chip:hover { background: var(--red-pale); border-color: var(--red); color: var(--red); }
+  .industry-chip.selected { background: var(--red); color: white; border-color: var(--red); }
+
+  /* Compliance banner */
+  .compliance-banner {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    color: white;
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .compliance-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .compliance-text { font-size: 12px; opacity: 0.9; line-height: 1.5; margin-bottom: 12px; }
+  .compliance-btn {
+    background: white;
+    color: var(--red);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+  }
+  .compliance-btn:hover { background: var(--gold); color: white; }
+
+  /* Modal overlay */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .modal-header {
+    background: var(--red);
+    color: white;
+    padding: 20px 24px;
+    border-radius: 16px 16px 0 0;
+    position: sticky;
+    top: 0;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .modal-subtitle { font-size: 13px; opacity: 0.85; }
+  .modal-body { padding: 24px; }
+  .modal-section { margin-bottom: 20px; }
+  .modal-section-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--red);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--red-pale);
+  }
+  .modal-text { font-size: 13px; line-height: 1.7; color: var(--gray-dark); margin-bottom: 10px; }
+  .reg-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-light);
+    font-size: 13px;
+  }
+  .reg-badge {
+    background: var(--red-pale);
+    color: var(--red);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    height: fit-content;
+  }
+  .quiz-question {
+    background: var(--gray-light);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .quiz-q { font-weight: 600; font-size: 14px; margin-bottom: 10px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 6px; }
+  .quiz-opt {
+    background: white;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .quiz-opt:hover { border-color: var(--red); background: var(--red-pale); }
+  .quiz-opt.selected { border-color: var(--red); background: var(--red); color: white; }
+  .sign-area {
+    border: 2px dashed var(--gray);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  .sign-area:hover { border-color: var(--red); background: var(--red-pale); }
+  .sign-area.signed { border-color: var(--green); background: #F0FFF7; }
+  .modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gray);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-radius: 0 0 16px 16px;
+  }
+  .btn-secondary {
+    background: none;
+    border: 1px solid var(--gray);
+    border-radius: 20px;
+    padding: 10px 24px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 28px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--red-dark); }
+  .btn-primary:disabled { background: var(--gray); cursor: not-allowed; }
+  .progress-bar {
+    height: 4px;
+    background: var(--gray-light);
+    border-radius: 2px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 2px;
+    transition: width 0.3s;
+  }
+  .step-indicator {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray);
+  }
+  .step-dot.active { background: var(--red); transform: scale(1.3); }
+  .step-dot.done { background: var(--green); }
+
+  /* Business profile card in feed */
+  .biz-listing {
+    background: white;
+    border-radius: var(--radius);
+    border: 2px solid var(--red);
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .biz-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .biz-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .biz-name { font-weight: 700; font-size: 15px; }
+  .biz-industry {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-top: 2px;
+  }
+  .biz-verified {
+    margin-left: auto;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .biz-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .biz-detail-item { font-size: 12px; }
+  .biz-detail-label { color: var(--gray-mid); margin-bottom: 2px; }
+  .biz-detail-value { font-weight: 600; color: var(--black); }
+  .biz-actions { display: flex; gap: 8px; }
+  .btn-contact {
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-contract {
+    background: none;
+    border: 1px solid var(--red);
+    color: var(--red);
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-contract:hover { background: var(--red-pale); }
+
+  .view-all {
+    text-align: center;
+    font-size: 13px;
+    color: var(--red);
+    cursor: pointer;
+    padding: 8px;
+    font-weight: 600;
+  }
+  .view-all:hover { text-decoration: underline; }
+
+  .public-notice {
+    background: #FFF8E1;
+    border: 1px solid #FFD54F;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #7B6000;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="logo">Biz<span>Connect</span></div>
+  <div class="nav-location" onclick="alert('Location: United States → New York → New York City\nNote: Your address is publicly visible per platform policy.')">
+    📍 New York, USA ▾
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang" onclick="alert('Language: English (US)\nProficiency: Native\nAvailable: 50+ languages')">🌐 EN ▾</div>
+    <button class="nav-btn" onclick="openModal('compliance')">📋 Sign Regulations</button>
+    <button class="nav-btn" onclick="alert('Profile menu')">My Profile ▾</button>
+  </div>
+</nav>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar-left">
+    <div class="profile-card">
+      <div class="avatar">JD</div>
+      <div class="profile-name">Jane Doe</div>
+      <div class="profile-type">Business Owner</div>
+      <div class="profile-location">📍 New York, USA</div>
+      <div class="public-notice">⚠️ Address is publicly visible</div>
+      <div class="profile-stats">
+        <div class="stat-box"><div class="stat-num">142</div><div class="stat-label">Connections</div></div>
+        <div class="stat-box"><div class="stat-num">38</div><div class="stat-label">Reviews</div></div>
+        <div class="stat-box"><div class="stat-num">12</div><div class="stat-label">Active Gigs</div></div>
+        <div class="stat-box"><div class="stat-num">4.9★</div><div class="stat-label">Rating</div></div>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <div class="nav-item active"><span class="nav-icon">🏠</span> Feed</div>
+      <div class="nav-item" onclick="alert('Business Directory — Browse all industries')"><span class="nav-icon">🏢</span> Businesses</div>
+      <div class="nav-item" onclick="alert('Gigs Marketplace — Post or apply for gigs')"><span class="nav-icon">💼</span> Gigs</div>
+      <div class="nav-item" onclick="alert('Bargains — Official price comparison')"><span class="nav-icon">🏷️</span> Bargains</div>
+      <div class="nav-item" onclick="alert('My Contracts — Signed agreements')"><span class="nav-icon">📄</span> Contracts</div>
+      <div class="nav-item" onclick="alert('Messages')"><span class="nav-icon">💬</span> Messages</div>
+      <div class="nav-item" onclick="openModal('compliance')"><span class="nav-icon">⚖️</span> Regulations</div>
+      <div class="nav-item" onclick="alert('Accessibility settings: Font size, contrast, screen reader, language')"><span class="nav-icon">♿</span> Accessibility</div>
+    </nav>
+  </aside>
+
+  <!-- MAIN FEED -->
+  <main class="main-feed">
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <button class="tab active" onclick="setTab(this)">🌍 All Posts</button>
+      <button class="tab" onclick="setTab(this)">🏢 Businesses</button>
+      <button class="tab" onclick="setTab(this)">💼 Gigs</button>
+      <button class="tab" onclick="setTab(this)">🏷️ Bargains</button>
+      <button class="tab" onclick="setTab(this)">🌐 Regional</button>
+    </div>
+
+    <!-- Composer -->
+    <div class="composer">
+      <div class="composer-top">
+        <div class="composer-avatar">JD</div>
+        <input class="composer-input" placeholder="Share a business update, post a bargain, or announce a gig...">
+      </div>
+      <div class="composer-actions">
+        <div class="composer-tools">
+          <button class="tool-btn">📷 Photo</button>
+          <button class="tool-btn">🏷️ Bargain</button>
+          <button class="tool-btn">💼 Gig</button>
+          <button class="tool-btn">📍 Location</button>
+        </div>
+        <button class="post-btn">Post</button>
+      </div>
+    </div>
+
+    <!-- Feed card 1 — WHITE — Business listing -->
+    <div class="biz-listing">
+      <div class="biz-header">
+        <div class="biz-avatar">TM</div>
+        <div>
+          <div class="biz-name">TechMakers Ltd.</div>
+          <div class="biz-industry">Technology · Software Development · IT Consulting</div>
+        </div>
+        <div class="biz-verified">✓ Verified</div>
+      </div>
+      <div class="public-notice">📍 Public Address: 42 Broadway, New York, NY 10004, USA</div>
+      <div class="biz-details">
+        <div class="biz-detail-item">
+          <div class="biz-detail-label">Country</div>
+          <div class="biz-detail-value">🇺🇸 United States</div>
+        </div>
+        <div class="biz-detail-item">
+          <div class="biz-detail-label">Region</div>
+          <div class="biz-detail-value">New York State</div>
+        </div>
+        <div class="biz-detail-item">
+          <div class="biz-detail-label">City</div>
+          <div class="biz-detail-value">New York City</div>
+        </div>
+        <div class="biz-detail-item">
+          <div class="biz-detail-label">Active Gigs</div>
+          <div class="biz-detail-value">8 open positions</div>
+        </div>
+      </div>
+      <div class="biz-actions">
+        <button class="btn-contact">💬 Contact</button>
+        <button class="btn-contract" onclick="openModal('compliance')">📋 Sign Contract</button>
+        <button class="btn-contact" style="background:var(--gold)">🏷️ View Bargains</button>
+      </div>
+    </div>
+
+    <!-- Feed card 2 — RED — Bargain post -->
+    <div class="feed-card red-card">
+      <div class="card-header">
+        <div class="card-avatar">SM</div>
+        <div class="card-meta">
+          <div class="card-name">Sarah's Market — Official Bargain Post</div>
+          <div class="card-sub">Food & Beverage · Retail · Import/Export</div>
+        </div>
+        <span class="verified-badge">✓ Verified Seller</span>
+      </div>
+      <div class="price-tag">🏷️ Official Price: $24.99 <span class="official-price">— Market verified</span></div>
+      <div class="card-body">
+        Premium organic olive oil — imported directly from Mediterranean suppliers. Price determined by international commodity benchmarking. Contract available for bulk orders (min. 100 units). All international procurement regulations apply.
+      </div>
+      <div class="card-location">📍 Brooklyn, New York, USA — Public Address: 88 Atlantic Ave, Brooklyn NY 11201</div>
+      <div class="card-actions">
+        <button class="action-btn">❤️ 47 Likes</button>
+        <button class="action-btn">💬 12 Comments</button>
+        <button class="action-btn" onclick="openModal('compliance')">📋 Negotiate Contract</button>
+        <button class="action-btn">🔗 Share</button>
+      </div>
+    </div>
+
+    <!-- Feed card 3 — WHITE — Gig post -->
+    <div class="feed-card white-card">
+      <div class="card-header">
+        <div class="card-avatar">RK</div>
+        <div class="card-meta">
+          <div class="card-name">Raj Kumar — GigPost</div>
+          <div class="card-sub">IT Consulting · Remote · International</div>
+        </div>
+        <span class="verified-badge">💼 Gig Open</span>
+      </div>
+      <div class="card-body">
+        <strong>Senior React Developer needed</strong> — 3-month contract, remote. Building a fintech platform. Must have 5+ years experience. Applications range: 10–50 candidates. Currently 23 applications received.
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+        <span style="background:var(--red-pale);color:var(--red);padding:3px 10px;border-radius:10px;font-size:12px;font-weight:600;">💰 $8,000–$12,000/mo</span>
+        <span style="background:#F0FFF7;color:var(--green);padding:3px 10px;border-radius:10px;font-size:12px;font-weight:600;">📊 23/50 Applications</span>
+        <span style="background:var(--gray-light);color:var(--gray-dark);padding:3px 10px;border-radius:10px;font-size:12px;">🌐 Remote — Global</span>
+      </div>
+      <div class="card-location">📍 Mumbai, Maharashtra, India — Public Address: 14 Nariman Point, Mumbai 400021</div>
+      <div class="card-actions">
+        <button class="action-btn">✋ Apply Now</button>
+        <button class="action-btn">💬 8 Comments</button>
+        <button class="action-btn" onclick="openModal('compliance')">📋 View Contract</button>
+        <button class="action-btn">🔗 Share</button>
+      </div>
+    </div>
+
+    <!-- Feed card 4 — RED — Social post -->
+    <div class="feed-card red-card">
+      <div class="card-header">
+        <div class="card-avatar">AL</div>
+        <div class="card-meta">
+          <div class="card-name">Amara Lawson</div>
+          <div class="card-sub">Fashion Design · Lagos, Nigeria</div>
+        </div>
+        <span class="verified-badge">🌍 International</span>
+      </div>
+      <div class="card-body">
+        Excited to announce my first international procurement contract signed through BizConnect — legally verified across three jurisdictions. The DocuSign-integrated contract process made cross-border compliance seamless. This platform is changing how small businesses go global. 🌍
+      </div>
+      <div class="card-location">📍 Lagos, Lagos State, Nigeria — Public Address: 5 Victoria Island, Lagos 101241</div>
+      <div class="card-actions">
+        <button class="action-btn">❤️ 128 Likes</button>
+        <button class="action-btn">💬 34 Comments</button>
+        <button class="action-btn">🔗 Share</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="sidebar-right">
+
+    <!-- Compliance banner -->
+    <div class="compliance-banner">
+      <div class="compliance-title">⚖️ International Regulations</div>
+      <div class="compliance-text">Before signing any contract, you must read and digitally sign the international commerce regulations. Required by WTO, GDPR, CISG, and local law.</div>
+      <button class="compliance-btn" onclick="openModal('compliance')">Read & Sign Now →</button>
+    </div>
+
+    <!-- Gigs widget -->
+    <div class="widget">
+      <div class="widget-header">
+        💼 Latest Gigs
+        <span style="font-size:11px;opacity:0.8;font-weight:400;">Wide range available</span>
+      </div>
+      <div class="widget-body">
+        <div class="gig-item">
+          <div class="gig-title">UI/UX Designer — SaaS Product</div>
+          <div class="gig-budget">$3,000–$5,000 / project</div>
+          <div class="gig-meta">
+            <span class="gig-range">🌐 Remote · Global</span>
+            <span class="gig-apps">14/30 apps</span>
+          </div>
+        </div>
+        <div class="gig-item">
+          <div class="gig-title">French Translator — Legal Docs</div>
+          <div class="gig-budget">$50/hour</div>
+          <div class="gig-meta">
+            <span class="gig-range">📍 Paris, France</span>
+            <span class="gig-apps">6/15 apps</span>
+          </div>
+        </div>
+        <div class="gig-item">
+          <div class="gig-title">Supply Chain Manager</div>
+          <div class="gig-budget">$90,000/year</div>
+          <div class="gig-meta">
+            <span class="gig-range">📍 Singapore</span>
+            <span class="gig-apps">42/50 apps</span>
+          </div>
+        </div>
+        <div class="gig-item">
+          <div class="gig-title">Social Media Content Writer</div>
+          <div class="gig-budget">$800/month</div>
+          <div class="gig-meta">
+            <span class="gig-range">🌐 Remote</span>
+            <span class="gig-apps">8/20 apps</span>
+          </div>
+        </div>
+        <div class="gig-item">
+          <div class="gig-title">Agricultural Export Specialist</div>
+          <div class="gig-budget">$4,500/month</div>
+          <div class="gig-meta">
+            <span class="gig-range">📍 Nairobi, Kenya</span>
+            <span class="gig-apps">3/10 apps</span>
+          </div>
+        </div>
+        <div class="view-all" onclick="alert('Full gigs marketplace — thousands of opportunities globally')">View all gigs →</div>
+      </div>
+    </div>
+
+    <!-- Industry Directory -->
+    <div class="widget">
+      <div class="widget-header">🏢 Industry Directory</div>
+      <div class="widget-body">
+        <div class="industry-grid">
+          <div class="industry-chip selected">💻 Technology</div>
+          <div class="industry-chip">🏥 Healthcare</div>
+          <div class="industry-chip">🏗️ Construction</div>
+          <div class="industry-chip">🌾 Agriculture</div>
+          <div class="industry-chip">📚 Education</div>
+          <div class="industry-chip">🚢 Logistics</div>
+          <div class="industry-chip">👗 Fashion</div>
+          <div class="industry-chip">🍽️ Food & Bev</div>
+          <div class="industry-chip">⚖️ Legal</div>
+          <div class="industry-chip">💰 Finance</div>
+          <div class="industry-chip">🎨 Creative</div>
+          <div class="industry-chip">🔧 Manufacturing</div>
+        </div>
+        <div class="view-all" onclick="alert('Full industry directory — 200+ categories across all sectors')">Browse all industries →</div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- COMPLIANCE MODAL -->
+<div class="modal-overlay" id="complianceModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">⚖️ International Regulations Agreement</div>
+      <div class="modal-subtitle">You must read, comprehend, and digitally sign before proceeding</div>
+    </div>
+    <div class="modal-body">
+      <div class="step-indicator">
+        <div class="step-dot done" id="dot1"></div>
+        <div class="step-dot active" id="dot2"></div>
+        <div class="step-dot" id="dot3"></div>
+        <div class="step-dot" id="dot4"></div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:25%"></div></div>
+
+      <!-- Step 1: Regulations -->
+      <div id="step1">
+        <div class="modal-section">
+          <div class="modal-section-title">📜 Applicable International Regulations</div>
+          <div class="modal-text">The following international commerce regulations govern all transactions on this platform. You are required to read and understand each one.</div>
+
+          <div class="reg-item"><span class="reg-badge">WTO</span><div>World Trade Organization guidelines apply to all cross-border commerce. Parties must comply with non-discrimination, transparency, and reciprocity principles.</div></div>
+          <div class="reg-item"><span class="reg-badge">CISG</span><div>UN Convention on Contracts for the International Sale of Goods governs international procurement contracts. Formation, performance, and breach remedies are standardised.</div></div>
+          <div class="reg-item"><span class="reg-badge">GDPR</span><div>EU General Data Protection Regulation applies to all users whose data is processed. Right to access, erasure, and portability are guaranteed.</div></div>
+          <div class="reg-item"><span class="reg-badge">eIDAS</span><div>Electronic signatures on this platform are legally valid under EU eIDAS Regulation and equivalent national laws including ESIGN Act (USA).</div></div>
+          <div class="reg-item"><span class="reg-badge">ICC</span><div>Incoterms 2020 apply to all international shipping and delivery terms. Parties must specify applicable Incoterm in each contract.</div></div>
+          <div class="reg-item"><span class="reg-badge">LOCAL</span><div>Local regulations of both buyer and seller jurisdictions apply simultaneously. Platform automatically detects applicable local law based on registered address.</div></div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">🌍 Cultural & Language Rights</div>
+          <div class="modal-text">You have the right to conduct business in your preferred language. All contracts are available in 50+ languages. Cultural differences in business practice are acknowledged and respected. Religious observance schedules may be accommodated upon request.</div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">📍 Public Address Policy</div>
+          <div class="modal-text"><strong>Important:</strong> Your full address including country, region, city, and street address will be publicly visible on your profile. This is required for international commerce transparency and regulatory compliance. By proceeding you consent to this disclosure.</div>
+        </div>
+      </div>
+
+      <!-- Step 2: Quiz (hidden initially) -->
+      <div id="step2" style="display:none;">
+        <div class="modal-section">
+          <div class="modal-section-title">✅ Comprehension Check</div>
+          <div class="modal-text">Answer the following questions to confirm you have understood the regulations. You must score 80% or higher to proceed.</div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="quiz-q">1. Which regulation governs the validity of your digital signature on this platform?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="selectOpt(this)">WTO Non-discrimination principle</div>
+            <div class="quiz-opt" onclick="selectOpt(this)">eIDAS Regulation / ESIGN Act</div>
+            <div class="quiz-opt" onclick="selectOpt(this)">ICC Incoterms 2020</div>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="quiz-q">2. Is your street address visible to other users on this platform?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="selectOpt(this)">No, it is kept private</div>
+            <div class="quiz-opt" onclick="selectOpt(this)">Yes, it is publicly visible per platform policy</div>
+            <div class="quiz-opt" onclick="selectOpt(this)">Only visible to verified businesses</div>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="quiz-q">3. Under CISG, what does the UN Convention govern on this platform?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="selectOpt(this)">International procurement contracts between buyers and sellers</div>
+            <div class="quiz-opt" onclick="selectOpt(this)">Social media content moderation rules</div>
+            <div class="quiz-opt" onclick="selectOpt(this)">Gig worker visa requirements</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Signature (hidden) -->
+      <div id="step3" style="display:none;">
+        <div class="modal-section">
+          <div class="modal-section-title">✍️ Digital Signature Required</div>
+          <div class="modal-text">By signing below you confirm that you have read, understood, and agree to comply with all international regulations listed above. This signature is legally binding under eIDAS and ESIGN Act.</div>
+        </div>
+        <div class="sign-area" id="signArea" onclick="signDocument()">
+          <div style="font-size:32px;margin-bottom:8px;">✍️</div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Click to sign digitally</div>
+          <div style="font-size:12px;color:var(--gray-mid);">Your biometric timestamp and device fingerprint will be recorded</div>
+        </div>
+        <div style="font-size:12px;color:var(--gray-mid);text-align:center;">A signed PDF copy will be emailed to you at: jane.doe@email.com</div>
+      </div>
+
+      <!-- Step 4: Complete (hidden) -->
+      <div id="step4" style="display:none;text-align:center;padding:20px 0;">
+        <div style="font-size:48px;margin-bottom:16px;">✅</div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--green);margin-bottom:8px;">Agreement Signed</div>
+        <div style="font-size:14px;color:var(--gray-dark);margin-bottom:16px;">Your signed agreement has been recorded. A PDF copy has been sent to your email. You may now proceed to sign contracts with business owners.</div>
+        <div style="background:var(--gray-light);border-radius:10px;padding:14px;font-size:13px;color:var(--gray-dark);">
+          <strong>Certificate ID:</strong> BC-2026-INT-00847<br>
+          <strong>Signed:</strong> March 17, 2026 — 14:32 EST<br>
+          <strong>Jurisdiction:</strong> New York, USA + International<br>
+          <strong>Valid until:</strong> March 17, 2027
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal()">Close</button>
+      <button class="btn-primary" id="modalNextBtn" onclick="nextStep()">I Have Read — Continue →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentStep = 1;
+  let signed = false;
+
+  function openModal(type) {
+    document.getElementById('complianceModal').classList.add('active');
+    currentStep = 1;
+    updateModal();
+  }
+
+  function closeModal() {
+    document.getElementById('complianceModal').classList.remove('active');
+  }
+
+  function nextStep() {
+    if (currentStep < 4) {
+      currentStep++;
+      updateModal();
+    } else {
+      closeModal();
+    }
+  }
+
+  function updateModal() {
+    // Hide all steps
+    ['step1','step2','step3','step4'].forEach((s,i) => {
+      document.getElementById(s).style.display = (i+1 === currentStep) ? 'block' : 'none';
+    });
+
+    // Update dots
+    for (let i = 1; i <= 4; i++) {
+      const dot = document.getElementById('dot'+i);
+      if (i < currentStep) { dot.className = 'step-dot done'; }
+      else if (i === currentStep) { dot.className = 'step-dot active'; }
+      else { dot.className = 'step-dot'; }
+    }
+
+    // Progress bar
+    document.getElementById('progressFill').style.width = (currentStep * 25) + '%';
+
+    // Button text
+    const btn = document.getElementById('modalNextBtn');
+    if (currentStep === 1) btn.textContent = 'I Have Read — Continue →';
+    else if (currentStep === 2) btn.textContent = 'Submit Answers →';
+    else if (currentStep === 3) btn.textContent = signed ? 'Complete Registration →' : 'Please Sign Above First';
+    else { btn.textContent = 'Close & Access Platform'; }
+
+    if (currentStep === 3 && !signed) {
+      btn.disabled = true;
+    } else {
+      btn.disabled = false;
+    }
+  }
+
+  function selectOpt(el) {
+    const parent = el.closest('.quiz-options');
+    parent.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function signDocument() {
+    signed = true;
+    const area = document.getElementById('signArea');
+    area.classList.add('signed');
+    area.innerHTML = '<div style="font-size:32px;margin-bottom:8px;">✅</div><div style="font-weight:700;font-size:14px;color:var(--green);margin-bottom:4px;">Signed — Jane Doe</div><div style="font-size:12px;color:var(--gray-mid);">March 17, 2026 · 14:32 EST · New York, USA</div>';
+    document.getElementById('modalNextBtn').disabled = false;
+    document.getElementById('modalNextBtn').textContent = 'Complete Registration →';
+  }
+
+  function setTab(el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>
