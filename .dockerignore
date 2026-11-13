@@ -1,0 +1,10 @@
+node_modules
+data
+test
+docs
+.git
+.github
+*.sqlite*
+.env
+Dockerfile
+docker-compose.yml
